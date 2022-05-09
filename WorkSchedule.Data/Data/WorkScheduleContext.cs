@@ -7,13 +7,13 @@ using WorkSchedule.Data.Entities;
 
 namespace WorkSchedule.Data.Data
 {
-    public partial class ToyUniverseContext : DbContext
+    public partial class WorkScheduleContext : DbContext
     {
-        public ToyUniverseContext()
+        public WorkScheduleContext()
         {
         }
 
-        public ToyUniverseContext(DbContextOptions<ToyUniverseContext> options)
+        public WorkScheduleContext(DbContextOptions<WorkScheduleContext> options)
             : base(options)
         {
         }

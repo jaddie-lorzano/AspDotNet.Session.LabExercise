@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class Skill
+    public partial class Skill : BaseEntity
     {
         public Skill()
         {
             EmployeeSkills = new HashSet<EmployeeSkill>();
         }
-
-        public int Id { get; set; }
         public string Description { get; set; }
         public bool? RequiresTicket { get; set; }
 

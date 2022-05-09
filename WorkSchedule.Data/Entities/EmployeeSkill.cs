@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class EmployeeSkill
+    public partial class EmployeeSkill : BaseEntity
     {
-        public int Id { get; set; }
         public int? Level { get; set; }
         public int? YearsOfExperience { get; set; }
         public decimal? HourlyWage { get; set; }

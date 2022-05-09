@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class Schedule
+    public partial class Schedule : BaseEntity
     {
-        public int Id { get; set; }
         public DateTime Day { get; set; }
         public decimal HourlyWage { get; set; }
         public bool OverTime { get; set; }

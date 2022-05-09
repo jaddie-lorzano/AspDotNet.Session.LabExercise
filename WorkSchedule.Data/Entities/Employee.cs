@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class Employee
+    public partial class Employee : BaseEntity
     {
         public Employee()
         {
@@ -13,7 +13,6 @@ namespace WorkSchedule.Data.Entities
             Schedules = new HashSet<Schedule>();
         }
 
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string HomePhone { get; set; }

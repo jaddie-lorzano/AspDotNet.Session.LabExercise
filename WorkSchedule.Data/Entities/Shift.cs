@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class Shift
+    public partial class Shift : BaseEntity
     {
         public Shift()
         {
             Schedules = new HashSet<Schedule>();
         }
-
-        public int Id { get; set; }
         public int DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }

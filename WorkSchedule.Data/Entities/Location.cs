@@ -5,14 +5,12 @@ using System.Collections.Generic;
 
 namespace WorkSchedule.Data.Entities
 {
-    public partial class Location
+    public partial class Location : BaseEntity
     {
         public Location()
         {
             PlacementContracts = new HashSet<PlacementContract>();
         }
-
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
