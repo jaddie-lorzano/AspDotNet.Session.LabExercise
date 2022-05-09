@@ -11,15 +11,8 @@ namespace ToyUniverse.Data.Data
 {
     public partial class ToyUniverseContext : DbContext
     {
-        public ToyUniverseContext()
+        public ToyUniverseContext(DbContextOptions<ToyUniverseContext> options) : base(options)
         {
-
-        }
-
-        public ToyUniverseContext(DbContextOptions<ToyUniverseContext> options)
-            : base(options)
-        {
-
         }
 
         public virtual DbSet<Category> Categories { get; set; }
@@ -37,14 +30,6 @@ namespace ToyUniverse.Data.Data
         public virtual DbSet<ToyBrand> ToyBrands { get; set; }
         public virtual DbSet<VwOrderWrapper> VwOrderWrappers { get; set; }
         public virtual DbSet<Wrapper> Wrappers { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-47CLFBT;Database=ToyUniverse;User id=sa;Password=D@gisik@n1997*");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
