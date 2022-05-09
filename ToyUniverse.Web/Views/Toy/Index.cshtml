@@ -1,0 +1,79 @@
+﻿@using ToyUniverse.Data.Models;
+@using ToyUniverse.Web.Models;
+@using System.Collections.Generic;
+
+@{
+    ViewBag.Title = "Browse Toys";
+}
+
+@model PageResult<Toy>;
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Home</a> / <span>@ViewBag.Title</span>
+</div>
+<h2>Toys</h2>
+
+<form asp-action="Index" asp-controller="Toy" method="post">
+    <table class="table">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        @foreach (var toy in Model.Results)
+        {
+            <tr>
+                <td scope="row">@toy.CToyId</td>
+                <td>@toy.VToyName</td>
+                <td>@toy.VToyDescription</td>
+                <td>@toy.MToyRate.ToString("C2")</td>
+                <td>@toy.SiToyQoh</td>
+                <td> @Html.ActionLink("Details", "Details", "Toy", new { id=toy.CToyId })</td>
+                <td> @Html.ActionLink("Buy", "Add", "Cart", new { id=toy.CToyId })</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    <p>Showing @Model.Results.Count() out of @Model.RowCount results</p>
+    
+    <nav aria-label="Page navigation example" class="form-row align-items-center">
+        <div class="col-auto my-1">
+            @Html.DropDownListFor(p => p.PageSize, new SelectList(new List<int> {10, 20, 30, 40, 50, 100}), new {@class="custom-select mr-sm-2", @id="inlineFormCustomSelect", @onchange="PagerClick(1)"})
+        </div>
+        <div class="col-auto my-1">
+            <ul class="pagination" style="margin: 0">
+                @for (int pageIndex = 1; pageIndex <= Model.PageCount; pageIndex++)
+                {
+
+                    @if (pageIndex != Model.CurrentPage)
+                    {
+
+                        <li class="page-item"><a class="page-link" href="javascript:PagerClick(@pageIndex);">@pageIndex</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="#">@pageIndex <span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </nav>
+    <input type="hidden" id="currentPageIndex" name="currentPageIndex" />
+    <input type="hidden" id="pageSize" name="pageSize" />
+</form>
+
+<script type="text/javascript">
+    function PagerClick(index) {
+        document.getElementById("currentPageIndex").value = index;
+        document.getElementById("pageSize").value = document.getElementById("inlineFormCustomSelect").value;
+        document.forms[0].submit();
+    }
+</script>
+

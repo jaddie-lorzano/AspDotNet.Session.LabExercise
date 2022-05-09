@@ -1,0 +1,61 @@
+﻿@using ToyUniverse.Data.Models
+
+@{
+    ViewBag.Title = "Toy Details";
+    var toy = ViewData["Toy"] as Toy;
+}
+
+<div>
+    <div>
+        <a asp-controller="Home" asp-action="Index">Home</a> 
+        /
+        <a asp-controller="Toy" asp-action="Index">Browse Toys</a>
+        /
+        <span>@ViewBag.Title</span>
+    </div>
+
+    <h2>@ViewBag.Title</h2>
+    <p>@Html.ActionLink("Back", "Index")</p>
+    <table class="table">
+        <tr>
+            <td>
+                Id:
+            </td>
+            <td>
+                @toy.CToyId
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                @toy.VToyName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Description:
+            </td>
+            <td>
+                @toy.VToyDescription
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Price:
+            </td>
+            <td>
+                @toy.MToyRate.ToString("C2")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Stock:
+            </td>
+            <td>
+                @toy.SiToyQoh
+            </td>
+        </tr>
+    </table>
+</div>
