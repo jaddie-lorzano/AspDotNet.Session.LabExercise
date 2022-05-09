@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -9,6 +10,7 @@ namespace WorkSchedule.Data.Entities
     {
         public int? Level { get; set; }
         public int? YearsOfExperience { get; set; }
+        [Column(TypeName = "money")]
         public decimal? HourlyWage { get; set; }
         public int EmployeeId { get; set; }
         public int SkillId { get; set; }

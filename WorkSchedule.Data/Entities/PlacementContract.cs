@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -11,7 +12,9 @@ namespace WorkSchedule.Data.Entities
         {
             Shifts = new HashSet<Shift>();
         }
+        [Column(TypeName = "datetime")]
         public DateTime StartDate { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime EndDate { get; set; }
         public int LocationId { get; set; }
 
