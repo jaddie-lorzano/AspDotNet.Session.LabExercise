@@ -1,0 +1,58 @@
+﻿@using ToyUniverse.Data.Models
+@using ToyUniverse.Web.Extensions
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewBag.Title = "My Cart";
+}
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Home</a> / <span>@ViewBag.Title</span>
+</div>
+<h2>My Cart</h2>
+
+@if(Context.Session.GetObject<List<ShoppingCart>>("cart").Count() > 0)
+{
+    <a href="@Url.Action("Index", "Toy")">Continue Shopping</a>
+    <table class="table">
+        <tr>
+            <th>Option</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        @foreach (ShoppingCart item in @Context.Session.GetObject<List<ShoppingCart>>("cart"))
+        {
+            <tr>
+                <td><a href="@Url.Action("Remove", "Cart", new { id = item.CToy.CToyId })">Remove</a></td>
+                <td>@item.CToy.CToyId</td>
+                <td>@item.CToy.VToyName</td>
+                <td>@item.CToy.MToyRate.ToString("C2")</td>
+                <td>@item.SiQty</td>
+                <td>@((item.CToy.MToyRate * item.SiQty).ToString("C2"))</td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="font-weight:bold">Sum</td>
+            <td>
+                @{
+                    List<ShoppingCart> cart = Context.Session.GetObject<List<ShoppingCart>>("cart");
+                    var total = cart.Sum(item => item.CToy.MToyRate * item.SiQty).ToString("C2");
+                }
+                @total
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <h4 style="text-align:center">Cart is empty</h4>
+    <p style="text-align:center"><a href="@Url.Action("Index", "Toy")">Shop now!</a></p>
+}
+
