@@ -8,8 +8,8 @@ namespace WorkSchedule.Data.DataTransferObjects
 {
     public class EmployeeSkillsDTO
     {
-        public int EmployeeID { get; set; }
-        public int SkillID { get; set; }
+        public int EmployeeId { get; set; }
+        public int SkillId { get; set; }
         public string SkillDescription { get; set; }
     }
 }
